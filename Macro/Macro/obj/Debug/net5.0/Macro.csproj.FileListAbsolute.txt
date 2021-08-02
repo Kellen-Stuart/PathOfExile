@@ -1,0 +1,16 @@
+C:\PathOfExile\Macro\Macro\bin\Debug\net5.0\Macro.exe
+C:\PathOfExile\Macro\Macro\bin\Debug\net5.0\Macro.deps.json
+C:\PathOfExile\Macro\Macro\bin\Debug\net5.0\Macro.runtimeconfig.json
+C:\PathOfExile\Macro\Macro\bin\Debug\net5.0\Macro.runtimeconfig.dev.json
+C:\PathOfExile\Macro\Macro\bin\Debug\net5.0\Macro.dll
+C:\PathOfExile\Macro\Macro\bin\Debug\net5.0\ref\Macro.dll
+C:\PathOfExile\Macro\Macro\bin\Debug\net5.0\Macro.pdb
+C:\PathOfExile\Macro\Macro\obj\Debug\net5.0\Macro.csproj.AssemblyReference.cache
+C:\PathOfExile\Macro\Macro\obj\Debug\net5.0\Macro.GeneratedMSBuildEditorConfig.editorconfig
+C:\PathOfExile\Macro\Macro\obj\Debug\net5.0\Macro.AssemblyInfoInputs.cache
+C:\PathOfExile\Macro\Macro\obj\Debug\net5.0\Macro.AssemblyInfo.cs
+C:\PathOfExile\Macro\Macro\obj\Debug\net5.0\Macro.csproj.CoreCompileInputs.cache
+C:\PathOfExile\Macro\Macro\obj\Debug\net5.0\Macro.dll
+C:\PathOfExile\Macro\Macro\obj\Debug\net5.0\ref\Macro.dll
+C:\PathOfExile\Macro\Macro\obj\Debug\net5.0\Macro.pdb
+C:\PathOfExile\Macro\Macro\obj\Debug\net5.0\Macro.genruntimeconfig.cache
