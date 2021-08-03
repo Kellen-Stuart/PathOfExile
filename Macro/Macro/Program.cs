@@ -1,7 +1,9 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Macro
@@ -14,6 +16,9 @@ namespace Macro
         private static LowLevelKeyboardProc _proc = HookCallback;
         private static Process _pathOfExileProcess;
         private const string poeProcessName = "PathOfExile";
+        private static Random _random = new Random();
+        private static string[] _keys = {"{1}", "{2}", "{3}", "{5}"};
+        private static int _randomWait => _random.Next(0, 100);
         
         /// <summary>
         ///  The main entry point for the application.
@@ -60,12 +65,17 @@ namespace Macro
                 if ((Keys) vkCode == Keys.D4)
                 {
                     SetForegroundWindow(_pathOfExileProcess.MainWindowHandle);
-                    SendKeys.SendWait("{1}{2}{3}{5}{q}{w}");
+                    foreach (var key in _keys)
+                    {
+                        SendKeys.SendWait(key);
+                        Thread.Sleep(_randomWait);
+                    }
                 }
 
                 if ((Keys) vkCode == Keys.D6)
                 {
-                    
+                    _pathOfExileProcess.Kill();
+                    Application.Exit();
                 }
                     
             }
