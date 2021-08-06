@@ -1,9 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace Macro
@@ -17,6 +15,7 @@ namespace Macro
         private static Process _pathOfExileProcess;
         private const string poeProcessName = "PathOfExile";
         private static string[] _keys = {"{1}", "{2}", "{3}", "{5}", "{q}"};
+        private static string _keysString = string.Join(string.Empty, _keys);
         private static Random _random = new Random();
         private static int _randomWait => _random.Next(0, 25);
         
@@ -42,11 +41,11 @@ namespace Macro
         
         private static IntPtr SetHook(LowLevelKeyboardProc proc)
         {
-            using (Process poeProcess = Process.GetProcessesByName("pathofexile").Single())
-            using (ProcessModule poeModule = poeProcess.MainModule)
+            using (Process process = Process.GetCurrentProcess())
+            using (ProcessModule mainModule = process.MainModule)
             {
                 return SetWindowsHookEx(WH_KEYBOARD_LL, proc,
-                    GetModuleHandle(poeModule.ModuleName), 0);
+                    GetModuleHandle(mainModule.ModuleName), 0);
             }
         }
 
@@ -64,12 +63,21 @@ namespace Macro
                 #endif
                 if ((Keys) vkCode == Keys.D4)
                 {
-                    SetForegroundWindow(_pathOfExileProcess.MainWindowHandle);
-                    foreach (var key in _keys)
-                    {
-                        SendKeys.SendWait(key);
-                        Thread.Sleep(_randomWait);
-                    }
+                    //SetForegroundWindow(_pathOfExileProcess.MainWindowHandle);
+                    //SendKeys.Send(_keysString);
+                    var vk1 = 0x30;
+                    var vk2 = 0x31;
+                    var vk3 = 0x32;
+                    var vk4 = 0x33;
+                    var vk5 = 0x34;
+                    var vkq = 0x51;
+                    UInt32 syskeydown = 0x0104;
+                    PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, vk1, 0);
+                    PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, vk2, 0);
+                    PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, vk3, 0);
+                    PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, vk4, 0);
+                    PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, vk5, 0);
+                    PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, vkq, 0);
                 }
 
                 if ((Keys) vkCode == Keys.F4)
@@ -99,5 +107,9 @@ namespace Macro
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool SetForegroundWindow(IntPtr hWnd);
+        
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern bool PostMessage(IntPtr hWnd, UInt32 Msg, int wParam, int lParam);
+        
     }
 }
