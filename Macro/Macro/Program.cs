@@ -16,9 +16,9 @@ namespace Macro
         private static LowLevelKeyboardProc _proc = HookCallback;
         private static Process _pathOfExileProcess;
         private const string poeProcessName = "PathOfExile";
+        private static string[] _keys = {"{1}", "{2}", "{3}", "{5}", "{q}"};
         private static Random _random = new Random();
-        private static string[] _keys = {"{1}", "{2}", "{3}", "{5}"};
-        private static int _randomWait => _random.Next(0, 100);
+        private static int _randomWait => _random.Next(0, 25);
         
         /// <summary>
         ///  The main entry point for the application.
@@ -72,7 +72,7 @@ namespace Macro
                     }
                 }
 
-                if ((Keys) vkCode == Keys.D6)
+                if ((Keys) vkCode == Keys.F4)
                 {
                     _pathOfExileProcess.Kill();
                     Application.Exit();
