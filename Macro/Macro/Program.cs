@@ -16,14 +16,14 @@ namespace Macro
         private const string poeProcessName = "PathOfExile";
         private static Random _random = new Random();
 
-        private static int[] _virtualKeys = new[]
+        private static VirtualKeys[] _keysToPress = new[]
         {
-            0x30, // 1
-            0x31, // 2
-            0x32, // 3
-            //0x33, // 4
-            0x34, // 5
-            0x51  // Q
+            VirtualKeys.KEY_0,
+            VirtualKeys.KEY_1,
+            VirtualKeys.KEY_2,
+            VirtualKeys.KEY_3,
+            VirtualKeys.KEY_5,
+            VirtualKeys.KEY_Q
         };
         
         private static int _randomWait => _random.Next(0, 25);
@@ -75,8 +75,8 @@ namespace Macro
                     //SetForegroundWindow(_pathOfExileProcess.MainWindowHandle);
                     //SendKeys.Send(_keysString);
                     UInt32 syskeydown = 0x0104;
-                    foreach(var key in _virtualKeys)
-                        PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, key, 0);
+                    foreach(var key in _keysToPress)
+                        PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, (int)key, 0);
                 }
 
                 if ((Keys) vkCode == Keys.F4)
