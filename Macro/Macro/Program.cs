@@ -14,9 +14,18 @@ namespace Macro
         private static LowLevelKeyboardProc _proc = HookCallback;
         private static Process _pathOfExileProcess;
         private const string poeProcessName = "PathOfExile";
-        private static string[] _keys = {"{1}", "{2}", "{3}", "{5}", "{q}"};
-        private static string _keysString = string.Join(string.Empty, _keys);
         private static Random _random = new Random();
+
+        private static int[] _virtualKeys = new[]
+        {
+            0x30, // 1
+            0x31, // 2
+            0x32, // 3
+            //0x33, // 4
+            0x34, // 5
+            0x51  // Q
+        };
+        
         private static int _randomWait => _random.Next(0, 25);
         
         /// <summary>
@@ -65,19 +74,9 @@ namespace Macro
                 {
                     //SetForegroundWindow(_pathOfExileProcess.MainWindowHandle);
                     //SendKeys.Send(_keysString);
-                    var vk1 = 0x30;
-                    var vk2 = 0x31;
-                    var vk3 = 0x32;
-                    var vk4 = 0x33;
-                    var vk5 = 0x34;
-                    var vkq = 0x51;
                     UInt32 syskeydown = 0x0104;
-                    PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, vk1, 0);
-                    PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, vk2, 0);
-                    PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, vk3, 0);
-                    PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, vk4, 0);
-                    PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, vk5, 0);
-                    PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, vkq, 0);
+                    foreach(var key in _virtualKeys)
+                        PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, key, 0);
                 }
 
                 if ((Keys) vkCode == Keys.F4)
