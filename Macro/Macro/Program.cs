@@ -23,7 +23,20 @@ namespace Macro
             VirtualKeys.KEY_2,
             VirtualKeys.KEY_3,
             VirtualKeys.KEY_5,
-            VirtualKeys.KEY_Q
+            VirtualKeys.KEY_Q,
+            VirtualKeys.KEY_W,
+        };
+
+        private static Keys[] _keysToExit = new[]
+        {
+            Keys.F1,
+            Keys.F2,
+            Keys.F3,
+            Keys.F4,
+            Keys.F5,
+            Keys.F6,
+            Keys.F7,
+            Keys.F8
         };
         
         private static int _randomWait => _random.Next(0, 25);
@@ -79,7 +92,7 @@ namespace Macro
                         PostMessage(_pathOfExileProcess.MainWindowHandle, syskeydown, (int)key, 0);
                 }
 
-                if ((Keys) vkCode == Keys.F4)
+                if (_keysToExit.Contains((Keys) vkCode))
                 {
                     _pathOfExileProcess.Kill();
                     Application.Exit();
