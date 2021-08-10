@@ -23,7 +23,7 @@ namespace Macro
             VirtualKeys.KEY_2,
             VirtualKeys.KEY_3,
             VirtualKeys.KEY_5,
-            VirtualKeys.KEY_Q,
+            //VirtualKeys.KEY_Q,
             VirtualKeys.KEY_W
         };
 
