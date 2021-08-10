@@ -22,9 +22,9 @@ namespace Macro
             VirtualKeys.KEY_1,
             VirtualKeys.KEY_2,
             VirtualKeys.KEY_3,
-            VirtualKeys.KEY_5
-            //VirtualKeys.KEY_Q,
-            //VirtualKeys.KEY_W,
+            VirtualKeys.KEY_5,
+            VirtualKeys.KEY_Q,
+            VirtualKeys.KEY_W
         };
 
         private static Keys[] _keysToExit = new[]
